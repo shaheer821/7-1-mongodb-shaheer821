@@ -170,9 +170,28 @@
 import mongoose from "mongoose";
 
 // establish connection
+const uri = "mongodb+srv://s202282120_db_user:swelab@cluster0.prqxyuz.mongodb.net/labDB";
+
+async function connectDB() {
+  try {
+    await mongoose.connect(uri);
+    console.log("✅ Connected to MongoDB Atlas successfully!");
+  } catch (error) {
+    console.error("❌ MongoDB connection failed:", error.message);
+  }
+}
+
+connectDB();
 
 
 // define schema
+const studentSchema = new mongoose.Schema({
+   name: String,
+   age: Number,
+   major: String
+});
+
+const Student = mongoose.model("Student", studentSchema);
 
 
 // create document
